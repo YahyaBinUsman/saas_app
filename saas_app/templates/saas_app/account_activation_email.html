@@ -1,0 +1,13 @@
+<!-- account_activation_email.html -->
+{% autoescape off %}
+Hi {{ user.username }},
+
+Please click on the following link to activate your account:
+
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+If the above link doesn't work, copy and paste it into your browser.
+
+Thanks!
+{{ current_site.domain }} Team
+{% endautoescape %}

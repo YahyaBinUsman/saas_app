@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    oops ! sorry for the issue try activating the account again on the link below
+    Hi {{ user.username }},
+
+Please click on the following link to activate your account:
+
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+    
+</body>
+</html>

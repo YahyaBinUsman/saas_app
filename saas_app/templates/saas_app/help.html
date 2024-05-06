@@ -1,0 +1,153 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Documentation</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+    <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/gif" />
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <style>
+        .additional_image {
+            margin-top: 250px;
+        }       
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header_section header_bg">
+        {% include 'saas_app/header.html' %}
+    </div>
+
+    <!-- Add spacing below the navbar -->
+    <div class="mt-4"></div>
+    
+    <!-- Main Content -->
+    <div class="services_section layout_padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <h1 class="services_taital">Help Documentation</h1>
+            <p class="services_text">Find answers to your questions and learn how to use WriteSpeed AI effectively.</p>
+
+            <!-- Getting Started Section -->
+            <div class="mt-12">
+                <h2 class="services_taital">Getting Started</h2>
+                <p class="services_text">Welcome to WriteSpeed AI! Below are some steps to help you get started:</p>
+                <ul>
+                    <li> account make by signing up on our website.</li>
+                    <li>Explore our dashboard and settings to customize your experience.</li>
+                    <li>Start generating content by using our AI-powered tools.</li>
+                    <li>Check out our tutorials and guides for more in-depth assistance.</li>
+                </ul>
+            </div>
+
+            <!-- FAQs Section -->
+            <div class="mt-12">
+                <h2 class="services_taital">Frequently Asked Questions (FAQs)</h2>
+                <ul class="faq-list">
+                    <li class="faq-list-item">
+                        <p class="services_text">How do I sign up for an account?</p>
+                        <p class="services_text">To sign up for an account, go to our website and click on the "Sign Up" button. Follow the instructions to create your account.</p>
+                    </li>
+                    <li class="faq-list-item">
+                        <p class="services_text">Is there a free trial available?</p>
+                        <p class="services_text">Yes, we offer a free trial period for new users. You can sign up for the free trial on our website.</p>
+                    </li>
+                    <li class="faq-list-item">
+                        <p class="services_text">How can I upgrade my plan?</p>
+                        <p class="services_text">You can upgrade your plan at any time by going to your account settings and selecting the desired plan upgrade.</p>
+                    </li>
+                    <!-- Add more FAQs and answers -->
+                </ul>
+            </div>
+
+            <!-- Contact Support Section -->
+            <div class="mt-12">
+                <h2 class="about_text">Contact Support</h2>
+                <p class="dolor_text">If you need further assistance, feel free to reach out to our support team.</p>
+                <div class="location_text"><img src="{% static 'images/mail-icon.png' %}"><span class="padding_left_15">support@writespeedai.com</span></div>
+                <div class="location_text"><img src="{% static 'images/call-icon.png' %}"><span class="padding_left_15">+1 (555) 123-4567</span></div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div><img src="{% static 'images/img-1.png' %}" class="image_1"></div>
+            <!-- Add spacing -->
+            <div class="mt-4"></div>
+            <div style="width: 700px; height:auto;"><img src="{% static 'images/image.png' %}" class="additional_image"></div>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+     <!--footer section start -->
+     <div class="footer_section layout_padding margin_top_90">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-sm-6">
+              <h4 class="about_text">About Blogify</h4>
+              <div class="location_text"><img src="{% static 'images/map-icon.png' %}"><span class="padding_left_15">Locations</span></div>
+              <div class="location_text"><img src="{% static 'images/call-icon.png' %}"><span class="padding_left_15">+01 9876543210</span></div>
+              <div class="location_text"><img src="{% static 'images/mail-icon.png' %}"><span class="padding_left_15">demo@gmail.com</span></div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <h4 class="about_text">About Blogify</h4>
+              <p class="dolor_text">Blogify is a leading blog generating SaaS app that simplifies the process of creating and managing engaging blogs. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <h4 class="about_text">Instagram</h4>
+              <div class="footer_images">
+                <div class="footer_images_left">
+                  <div class="image_12"><img src="{% static 'images/img-12.png' %}"></div>
+                  <div class="image_12"><img src="{% static 'images/img-12.png' %}"></div>
+                  <div class="image_12"><img src="{% static 'images/img-12.png' %}"></div>
+                </div>
+                <div class="footer_images_right">
+                  <div class="image_12"><img src="{% static 'images/img-12.png' %}"></div>
+                  <div class="image_12"><img src="{% static 'images/img-12.png' %}"></div>
+                  <div class="image_12"><img src="{% static 'images/img-12.png' %}"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <h4 class="about_text">Newsletter</h4>
+              <input type="text" class="mail_text" placeholder="Enter your email" name="Enter your email">
+              <div class="subscribe_bt"><a href="/services/">Subscribe</a></div>
+              <div class="footer_social_icon">
+                <ul>
+                  <li><a href="#"><img src="{% static 'images/fb-icon1.png' %}"></a></li>
+                   <li><a href="#"><img src="{% static 'images/twitter-icon1.png' %}"></a></li>
+                  <li><a href="#"><img src="{% static 'images/linkedin-icon1.png' %}"></a></li>
+                  <li><a href="#"><img src="{% static 'images/youtub-icon1.png' %}"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- copyright section start -->
+          <div class="copyright_section">
+                        <div class="copyright_text">Copyright 2019 All Right Reserved By Yahya bin Usman</div>
+  
+          </div>
+          <!-- copyright section end -->
+        </div>
+      </div>
+
+    <!-- Javascript files-->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+    <script src="{% static 'js/plugin.js' %}"></script>
+    <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+</body>
+</html>
