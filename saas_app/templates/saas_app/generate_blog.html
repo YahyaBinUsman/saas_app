@@ -1,4 +1,5 @@
-{% load static %}
+{% load static %} 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
-<title>Services</title>
+<title>Generate Blog</title> <!-- Update the title -->
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content=""> 
@@ -30,122 +31,80 @@
 <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+</head>
 <style>
-  .services-section {
-    padding: 60px 0;
-  }
-  .service-card {
-    background: linear-gradient(to right bottom, #536976, #292e49);
-    border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    padding: 30px;
-    margin-bottom: 30px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    /* Adjusted width properties */
-    max-width: 300px; /* Set a maximum width to 300px */
-    margin: 0 auto 30px auto; /* Center align and add bottom margin */
-    height: auto; /* Allow height to adjust based on content */
-  }
-  
-  .service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-  }
-  
-  .service-icon img {
-    max-width: 100px;
-  }
-  
-  .service-card h3 {
-    font-size: 26px;
-    color: #ffffff;
-    margin-bottom: 20px;
-  }
-  
-  .price-text {
+  .send_bt  {
+    width: 100%;
+    float: left;
     font-size: 20px;
     color: #ffffff;
-    margin-bottom: 15px;
-  }
-  
-  .points-section ul {
-    padding: 0;
-    margin: 20px 0;
-  }
-  
-  .points-section li {
-    font-size: 18px;
-    color: #ffffff;
-    margin-bottom: 10px;
-  }
-  
-  .subscribe-btn {
-    background-color: #ff6b6b;
-    color: #ffffff;
-    border: none;
+    text-align: center;
+    background-color: #ff5a58;
+    padding: 10px 0px;
+    text-transform: uppercase;
     border-radius: 30px;
-    padding: 12px 40px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .subscribe-btn:hover {
-    background-color: #ff5252;
-  }
-  
+}
 </style>
-
-</head>
 <body>
   <!--header section start -->
     <div class="header_section header_bg">
         {% include 'saas_app/header.html' %}
+
     </div>
+    <!-- Add this block to display error messages -->
+{% if messages %}
+<div class="alert alert-danger" role="alert">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+</div>
+{% endif %}
+
     <!--header section end -->
-    <!--services section start -->
-    <div class="what_we_do_section layout_padding">
-        <div class="container">
-            <h1 class="what_taital">WHAT WE DO</h1>
-            <p class="what_text">It is a long established fact that a reader will be distracted by the readable content of a </p>
-           <!-- services.html -->
-           <div class="services-section">
-            <div class="container">
-              <div class="row">
-                {% for plan in plans %}
-                <div class="col-lg-4 col-md-6"> <!-- Adjusted column width -->
-                  <form method="post" action="{% url 'subscribe' %}">
-                    {% csrf_token %}
-                    <div class="service-card">
-                      <div class="service-icon"><img src="{% static 'images/icon-1.png' %}" alt="Service Icon"></div>
-                      <h3>{{ plan.name }}</h3>
-                      <p class="price-text">Price: ${{ plan.price }}</p>
-                      <p class="price-text">words: {{ plan.max_words_per_day }}/day</p>
-                      <div class="points-section">
-                        <ul>
-                          {% for point in plan.points %}
-                          <li>{{ point }}</li>
-                          {% endfor %}
-                        </ul>
-                      </div>
-                      <button type="submit" class="subscribe-btn">Subscribe</button>
-                      <input type="hidden" name="plan_id" value="{{ plan.id }}">
-                    </div>
-                  </form>
+    <!-- contact section start -->
+   <!-- contact section start -->
+<div class="contact_section layout_padding">
+    <div class="container-fluid">
+      <h1 class="what_taital">Generate Blog</h1>
+      <p class="amet_text">Generate Blog text with our Blog text generating website</p>
+      <p class="remaining_words_text">Remaining Words Left: {{ words_left_today }}</p>
+      <form method="post">
+        {% csrf_token %}
+  
+        <div class="contact_section2">
+          <div class="row">
+            <div class="col-md-6 padding_left_0">
+              <div class="mail_section">
+                <div class="form-group">
+                  <label for="title">Title:</label>
+                  <input type="text" id="title" name="title" class="mail_text_1" placeholder="Enter your title">
                 </div>
-                {% endfor %}
+                <div class="form-group">
+                  <label for="description">Description:</label>
+                  <textarea id="description" name="description" class="mail_text_1" rows="4" cols="50" placeholder="Enter your description"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="total_words">Total Words:</label>
+                  <input type="number" id="total_words" name="total_words" class="mail_text_1" min="1" placeholder="Enter total words">
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="send_bt">Generate</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 padding_0">
+              <div class="map-responsive">
+                <!-- You can keep the map or remove it based on your preference -->
+                <img src="{% static 'images/image copy.png' %}" width="600" height="400" frameborder="0" style="border:0; width: 100%;" allowfullscreen="">
               </div>
             </div>
           </div>
-          
         </div>
+      </form>
     </div>
-    
-    
-    <!--services section end -->
-    <!--footer section start -->
-    <div class="footer_section layout_padding margin_top_90">
+  </div>
+  
+  <div class="footer_section layout_padding margin_top_90">
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-sm-6">
@@ -189,8 +148,7 @@
         </div>
         <!-- copyright section start -->
         <div class="copyright_section">
-                      <div class="copyright_text">Copyright 2019 All Right Reserved By Yahya bin Usman</div>
-
+          <div class="copyright_text">Copyright 2019 All Right Reserved By Yahya bin Usman</div>
         </div>
         <!-- copyright section end -->
       </div>

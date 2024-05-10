@@ -151,3 +151,6 @@ PAYPAL_SECRET = 'your_paypal_secret'
 PAYPAL_MODE = 'sandbox'  # Change to 'live' for production
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+import openai
+
+openai.api_key = 'sk-proj-EooPZ4Za0R6HZzLG252jT3BlbkFJmEnBUlv1N2Uo0j1iAnbE'

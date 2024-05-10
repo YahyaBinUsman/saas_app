@@ -12,3 +12,4 @@ class AdminDashboardMiddleware:
                 return HttpResponseForbidden()
         response = self.get_response(request)
         return response
+

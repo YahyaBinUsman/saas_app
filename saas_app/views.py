@@ -202,23 +202,24 @@ def checkout(request, plan_id):
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .models import UserSubscription
+from .utils import calculate_words_left_per_day
 
 @login_required
 def personal_page(request):
     try:
         user_subscription = UserSubscription.objects.get(user=request.user)
-        subscription_end_date = user_subscription.subscription_date + timedelta(days=30)
-        remaining_days = (subscription_end_date - timezone.now().date()).days
+        remaining_days = (user_subscription.subscription_date + timedelta(days=30) - timezone.now().date()).days
+        words_left_per_day = calculate_words_left_per_day(user_subscription)
+        
         return render(request, 'saas_app/personal_page.html', {
             'remaining_days': remaining_days,
-            'subscription_plan': user_subscription.plan.name  # Pass the subscription plan name
+            'subscription_plan': user_subscription.plan.name,
+            'words_left_per_day': words_left_per_day  # Pass the words left per day to the template
         })
     except UserSubscription.DoesNotExist:
-        # Set a message for the user
         messages.warning(request, "You don't have a subscription. Please buy a subscription.")
         return HttpResponseRedirect('/services/')
 
@@ -229,8 +230,6 @@ def send_subscription_end_notification(user):
     to_email = [user.email]
     send_mail(subject, message, from_email, to_email)
 
-
-# saas_app/views.py
 
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -364,3 +363,52 @@ def team(request):
 
 def account_activation_invalid(request):
     return render(request,'saas_app/account_activation_invalid.html')
+
+from .utils import generate_blog
+
+from django.shortcuts import render
+# views.py
+
+from django.shortcuts import render, redirect
+from .models import UserSubscription
+from .utils import calculate_words_left_per_day, generate_blog
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def generate_blog_view(request):
+    if request.method == 'POST':
+        # Get user subscription based on logged-in user or any other identifier
+        user_subscription = UserSubscription.objects.get(user=request.user)
+        
+        # Calculate words left per day based on user subscription
+        words_left_today = calculate_words_left_per_day(user_subscription)
+        
+        # Get form inputs
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        total_words = int(request.POST.get('total_words'))
+        
+        # Check if the total words requested exceed the words left for today
+        if total_words > words_left_today:
+            # Redirect with an error message or handle the error appropriately
+            return redirect('generate_blog')  # Redirect to the same page
+            
+        # Pass words_per_day argument to generate_blog function
+        words_per_day = user_subscription.plan.words_per_day
+        generated_blog_text = generate_blog(description, title, total_words, words_per_day)
+        
+        # Deduct words from daily limit
+        user_subscription.words_generated_today += total_words
+        user_subscription.save()
+        
+        # Display or process the generated blog text as needed
+        return render(request, 'saas_app/generated_blog.html', {'blog_text': generated_blog_text})
+    
+    return render(request, 'saas_app/generate_blog.html')
+
+def generated_blog_view(request):
+    # This view will render the generated blog content
+    # You can modify it based on your requirements
+    generated_content = request.POST.get('generated_content')  # Assuming you pass the generated content as POST data
+    return render(request, 'saas_app/generated_blog.html', {'generated_content': generated_content})

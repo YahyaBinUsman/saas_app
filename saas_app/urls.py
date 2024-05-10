@@ -19,5 +19,5 @@ urlpatterns = [
     path('execute_payment/', views.execute_payment, name='execute_payment'),
     path('cancel_payment/', views.cancel_payment, name='cancel_payment'),
     path('team/', views.team, name='team'),
-
-   ]
+    path('generate_blog/', views.generate_blog_view, name='generate_blog'),  # Updated URL for generating blogs
+    path('generated_blog/', views.generated_blog_view, name='generated_blog'), ]
